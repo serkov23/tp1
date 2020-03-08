@@ -1,14 +1,15 @@
-from PyQt5 import QtWidgets, QtCore
+import sys
+
 from PyQt5 import QtGui
+from PyQt5 import QtWidgets, QtCore
 
 from Figures import Figure2D, rect, polygon, segment, ray, line, elipse
 from Figures.poly_line import PolyLine
 from Figures.regular_polygon import RegularPolygon
 from Figures.round import Round
 from MGraphicsScene import MGraphicsScene
+from main import Ui_MainWindow
 from model import MModel
-from main import Ui_MainWindow  # импорт нашего сгенерированного файла
-import sys
 
 
 class MyWindow(QtWidgets.QMainWindow):
@@ -57,6 +58,8 @@ class MyWindow(QtWidgets.QMainWindow):
         self.ui.menuedit.set_model(self.model)
         self.ui.menuedit.set_list_view(self.ui.listView)
         self.ui.menuedit.menuAction().hovered.connect(self.edit_menu_check)
+        self.ui.actionmove.triggered.connect(
+            lambda: self.model.set_move_mode(self.ui.listView.selectedIndexes()[0].row()))
 
     def edit_menu_check(self):
         self.ui.menuedit.actions()[0].setEnabled(True)

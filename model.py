@@ -1,5 +1,5 @@
 from enum import IntEnum, auto
-from typing import Dict, Type, List
+from typing import Dict, Type, List, Union, Callable
 
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import QPointF
@@ -7,11 +7,13 @@ from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import QAction, QActionGroup, QGraphicsScene
 
 from Figures.Figure import Figure
-from Figures.point_figure import Point
 from Figures.Figure2D import Figure2D
+from Figures.point_figure import Point
 
 
 class MModel:
+    mode_map: Dict['Modes', Callable[[QPointF], None]]
+    __cur_move_figure: Union[Figure, None]
     __cur_figure: Type[Figure]
     scene: QGraphicsScene
     pen_color: QColor
@@ -27,6 +29,7 @@ class MModel:
 
     def __init__(self, figure_map: Dict[QtWidgets.QAction, Type[Figure]], actions: QtWidgets.QActionGroup,
                  scene: QtWidgets.QGraphicsScene, list_model: QtGui.QStandardItemModel):
+        self.__cur_move_figure = None
         self.__point_list = []
         self.brush_color = QtGui.QColor(QtCore.Qt.transparent)
         self.pen_color = QtGui.QColor(QtCore.Qt.black)
@@ -37,22 +40,28 @@ class MModel:
         self.__cur_figure = self.__figure_map[self.__actions.checkedAction()]
         self.list_model = list_model
         self.__mode = self.Modes.ADD_MODE
+        self.mode_map = {self.Modes.ADD_MODE: self.figure_add_pt, self.Modes.MOVE_MODE: self.figure_move}
 
-    @property
-    def mode(self) -> MModel.Modes:
-        return self.__mode
-
-    @mode.setter
-    def mode(self, mode: MModel.Modes):
-        self.__mode = mode
+    def set_move_mode(self, ind: int) -> True:
+        if len(self.__point_list) != 0:
+            return False
+        self.__mode = self.Modes.MOVE_MODE
+        self.__cur_move_figure = self.__figure_list[ind]
+        return True
 
     def add_point(self, point: QPointF):
-        self.figure_add_pt(point)
+        self.mode_map[self.__mode](point)
+
+    def figure_move(self, point: QPointF):
+        self.__cur_move_figure.move(point)
+        self.__mode = self.Modes.ADD_MODE
+        self.update()
 
     def figure_add_pt(self, point: QPointF):
         cur_figure = self.__figure_map[self.__actions.checkedAction()]
         self.__cmp_and_react(cur_figure)
         if len(self.__point_list) == 0 and cur_figure.points_needed() == Figure.UNDEFINED_POINTS:
+            # noinspection PyTypeChecker
             cur_figure.point_amm = QtWidgets.QInputDialog.getInt(self.scene.parent(), "points amount", "int:",
                                                                  min=3, step=1)[0]
         if cur_figure.points_needed() == Figure.UNLIMITED_POINTS or cur_figure.points_needed() >= len(

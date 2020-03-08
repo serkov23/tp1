@@ -1,9 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from PyQt5.QtCore import QPointF
-
 from PyQt5 import QtGui, QtCore, QtWidgets
+from PyQt5.QtCore import QPointF
 
 from id_producer import IdProducer
 
@@ -42,6 +41,19 @@ class Figure(ABC):
     @abstractmethod
     def paint(self, scene: QtWidgets.QGraphicsScene):
         pass
+
+    def move(self, pt: QPointF):
+        sx, sy = 0, 0
+        for i in self.points:
+            sx += i.x()
+            sy += i.y()
+        sx /= len(self.points)
+        sy /= len(self.points)
+        dx = sx - pt.x()
+        dy = sy - pt.y()
+        for i in self.points:
+            i.setX(i.x() - dx)
+            i.setY(i.y() - dy)
 
     def __del__(self):
         self.cur_id.ret_id(self.id)
