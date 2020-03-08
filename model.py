@@ -1,6 +1,8 @@
+from enum import IntEnum, auto
 from typing import Dict, Type, List
 
 from PyQt5 import QtGui, QtCore, QtWidgets
+from PyQt5.QtCore import QPointF
 from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import QAction, QActionGroup, QGraphicsScene
 
@@ -9,7 +11,7 @@ from Figures.point_figure import Point
 from Figures.Figure2D import Figure2D
 
 
-class Model:
+class MModel:
     __cur_figure: Type[Figure]
     scene: QGraphicsScene
     pen_color: QColor
@@ -18,6 +20,10 @@ class Model:
     __actions: QActionGroup
     FIGURE_MAP: Dict[QAction, Type[Figure]]
     __figure_list: List[Figure]
+
+    class Modes(IntEnum):
+        ADD_MODE = auto()
+        MOVE_MODE = auto()
 
     def __init__(self, figure_map: Dict[QtWidgets.QAction, Type[Figure]], actions: QtWidgets.QActionGroup,
                  scene: QtWidgets.QGraphicsScene, list_model: QtGui.QStandardItemModel):
@@ -30,15 +36,25 @@ class Model:
         self.scene = scene
         self.__cur_figure = self.__figure_map[self.__actions.checkedAction()]
         self.list_model = list_model
+        self.__mode = self.Modes.ADD_MODE
 
-    def add_point(self, point: QtCore.QPointF):
+    @property
+    def mode(self) -> MModel.Modes:
+        return self.__mode
 
+    @mode.setter
+    def mode(self, mode: MModel.Modes):
+        self.__mode = mode
+
+    def add_point(self, point: QPointF):
+        self.figure_add_pt(point)
+
+    def figure_add_pt(self, point: QPointF):
         cur_figure = self.__figure_map[self.__actions.checkedAction()]
         self.__cmp_and_react(cur_figure)
-        if len(self.__point_list)==0:
-            if cur_figure.points_needed() == Figure.UNDEFINED_POINTS:
-                cur_figure.point_amm = QtWidgets.QInputDialog.getInt(self.scene.parent(), "points amount", "int:",
-                                                                     min=3, step=1)[0]
+        if len(self.__point_list) == 0 and cur_figure.points_needed() == Figure.UNDEFINED_POINTS:
+            cur_figure.point_amm = QtWidgets.QInputDialog.getInt(self.scene.parent(), "points amount", "int:",
+                                                                 min=3, step=1)[0]
         if cur_figure.points_needed() == Figure.UNLIMITED_POINTS or cur_figure.points_needed() >= len(
                 self.__point_list) - 1:
             self.__point_list.append(point)

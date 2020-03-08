@@ -3,11 +3,11 @@ import typing
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QWidget
 
-from Model import Model
+from model import MModel
 
 
 class MMenu(QtWidgets.QMenu):
-    model: typing.Optional[Model]
+    model: typing.Optional[MModel]
     list_view: typing.Optional[QtWidgets.QListView]
 
     def __init__(self, parent: typing.Optional['QWidget'] = ...) -> None:

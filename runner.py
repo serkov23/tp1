@@ -6,7 +6,7 @@ from Figures.poly_line import PolyLine
 from Figures.regular_polygon import RegularPolygon
 from Figures.round import Round
 from MGraphicsScene import MGraphicsScene
-from Model import Model
+from model import MModel
 from main import Ui_MainWindow  # импорт нашего сгенерированного файла
 import sys
 
@@ -43,7 +43,7 @@ class MyWindow(QtWidgets.QMainWindow):
         }
         self.scene = MGraphicsScene(QtCore.QRectF(self.ui.graphicsView.rect()), self)
         self.list_model = QtGui.QStandardItemModel(self)
-        self.model = Model(act_map, self.figures, self.scene, self.list_model)
+        self.model = MModel(act_map, self.figures, self.scene, self.list_model)
         self.scene.set_model(self.model)
         self.ui.listView.setModel(self.list_model)
         self.ui.listView.customContextMenuRequested.connect(

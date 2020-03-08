@@ -3,7 +3,7 @@ import typing
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import QGraphicsSceneMouseEvent
 
-from Model import Model
+from model import MModel
 
 
 class MGraphicsScene(QtWidgets.QGraphicsScene):
@@ -12,7 +12,7 @@ class MGraphicsScene(QtWidgets.QGraphicsScene):
         self.model = None
         super(MGraphicsScene, self).__init__(scene_rect, parent)
 
-    def set_model(self, model: Model):
+    def set_model(self, model: MModel):
         self.model = model
 
     def mousePressEvent(self, event: QGraphicsSceneMouseEvent) -> None:
