@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Python</ID>
+  <OriginalElement>Figure.Figure</OriginalElement>
+  <nodes>
+    <node x="0.0" y="1123.0">Model.Model</node>
+    <node x="913.0" y="0.0">Figures.Figure.Figure</node>
+    <node x="913.0" y="662.0">Figures.segment.Segment</node>
+    <node x="0.0" y="706.0">Figures.polygon.Polygon</node>
+    <node x="15.5" y="451.0">Figures.Figure2D.Figure2D</node>
+    <node x="1596.0" y="1123.0">MGraphicsScene.MGraphicsScene</node>
+    <node x="1053.0" y="1123.0">main.Ui_MainWindow</node>
+    <node x="0.0" y="1835.0">id_producer.IdProducer</node>
+    <node x="1285.5" y="429.0">Figures.point_figure.Point</node>
+    <node x="1303.0" y="1123.0">runner.MyWindow</node>
+    <node x="1054.5" y="506.0">Figures.figure1D.Figure1D</node>
+    <node x="54.5" y="939.0">Figures.rect.Rect</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Figures.figure1D.Figure1D" target="Figures.Figure.Figure">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="189.5" />
+    </edge>
+    <edge source="Figures.polygon.Polygon" target="Figures.Figure2D.Figure2D">
+      <point x="0.0" y="-69.5" />
+      <point x="0.0" y="69.5" />
+    </edge>
+    <edge source="Figures.segment.Segment" target="Figures.figure1D.Figure1D">
+      <point x="0.0" y="-113.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="Figures.Figure2D.Figure2D" target="Figures.Figure.Figure">
+      <point x="0.0" y="-69.5" />
+      <point x="446.5" y="404.0" />
+      <point x="995.3333333333334" y="404.0" />
+      <point x="-164.66666666666663" y="189.5" />
+    </edge>
+    <edge source="Figures.rect.Rect" target="Figures.polygon.Polygon">
+      <point x="0.0" y="-69.5" />
+      <point x="0.0" y="69.5" />
+    </edge>
+    <edge source="Figures.point_figure.Point" target="Figures.Figure.Figure">
+      <point x="0.0" y="-91.5" />
+      <point x="1532.5" y="404.0" />
+      <point x="1324.6666666666665" y="404.0" />
+      <point x="164.66666666666652" y="189.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.30000000000000016" x="617.9999999999998" y="1343.9999999999995" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+  </Categories>
+</Diagram>
+

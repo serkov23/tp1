@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>779</width>
+    <height>521</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QGraphicsView" name="graphicsView"/>
+    </item>
+    <item>
+     <widget class="QWidget" name="widget" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetFixedSize</enum>
+       </property>
+       <item>
+        <widget class="QListView" name="listView">
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonFollowStyle</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="separator"/>
+   <addaction name="actionRect"/>
+   <addaction name="actionPolygon"/>
+   <addaction name="actionright_polygon"/>
+   <addaction name="actionelipse"/>
+   <addaction name="actionround"/>
+   <addaction name="separator"/>
+   <addaction name="actionsegment"/>
+   <addaction name="actionray"/>
+   <addaction name="actionline"/>
+   <addaction name="actionpoly_line"/>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>779</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuchoose_color">
+    <property name="title">
+     <string>choose color</string>
+    </property>
+    <addaction name="actionbrush_color"/>
+    <addaction name="action_pen_color"/>
+   </widget>
+   <widget class="MMenu" name="menuedit">
+    <property name="title">
+     <string>edit</string>
+    </property>
+    <addaction name="actionchange_pen"/>
+    <addaction name="actionchange_brush"/>
+    <addaction name="actionmove"/>
+   </widget>
+   <addaction name="menuchoose_color"/>
+   <addaction name="menuedit"/>
+  </widget>
+  <action name="actionRect">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>rect</string>
+   </property>
+   <property name="toolTip">
+    <string>paint rect</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::PreferencesRole</enum>
+   </property>
+   <property name="priority">
+    <enum>QAction::NormalPriority</enum>
+   </property>
+  </action>
+  <action name="actionPolygon">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>polygon</string>
+   </property>
+   <property name="toolTip">
+    <string>Polygon (double click to finish)</string>
+   </property>
+  </action>
+  <action name="actionbrush_color">
+   <property name="text">
+    <string>brush color</string>
+   </property>
+  </action>
+  <action name="action_pen_color">
+   <property name="text">
+    <string>pen color</string>
+   </property>
+  </action>
+  <action name="actionchange_pen">
+   <property name="text">
+    <string>change pen</string>
+   </property>
+  </action>
+  <action name="actionchange_brush">
+   <property name="text">
+    <string>change brush</string>
+   </property>
+  </action>
+  <action name="actionmove">
+   <property name="text">
+    <string>move</string>
+   </property>
+  </action>
+  <action name="actionelipse">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>elipse</string>
+   </property>
+  </action>
+  <action name="actionround">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>round</string>
+   </property>
+  </action>
+  <action name="actionsegment">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>segment</string>
+   </property>
+  </action>
+  <action name="actionray">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>ray</string>
+   </property>
+  </action>
+  <action name="actionline">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>line</string>
+   </property>
+  </action>
+  <action name="actionpoly_line">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>poly line</string>
+   </property>
+  </action>
+  <action name="actionright_polygon">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>right polygon</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MMenu</class>
+   <extends>QMenu</extends>
+   <header>mmenu.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
