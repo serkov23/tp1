@@ -3,7 +3,7 @@ import sys
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets, QtCore
 
-from Figures import Figure2D, rect, polygon, segment, ray, line, elipse
+from Figures import Figure2D, rect, polygon, segment, ray, line, ellipse
 from Figures.poly_line import PolyLine
 from Figures.regular_polygon import RegularPolygon
 from Figures.round import Round
@@ -37,7 +37,7 @@ class MyWindow(QtWidgets.QMainWindow):
             self.ui.actionsegment: segment.Segment,
             self.ui.actionray: ray.Ray,
             self.ui.actionline: line.Line,
-            self.ui.actionelipse: elipse.Elipse,
+            self.ui.actionelipse: ellipse.Ellipse,
             self.ui.actionround: Round,
             self.ui.actionright_polygon: RegularPolygon,
             self.ui.actionpoly_line: PolyLine

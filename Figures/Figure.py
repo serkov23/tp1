@@ -32,7 +32,7 @@ class Figure(ABC):
 
     @classmethod
     def get_next_id(cls) -> int:
-        return cls.cur_id.produce()
+        return cls.cur_id.produce(cls)
 
     @staticmethod
     def points_needed() -> int:
@@ -56,7 +56,7 @@ class Figure(ABC):
             i.setY(i.y() - dy)
 
     def __del__(self):
-        self.cur_id.ret_id(self.id)
+        self.cur_id.ret_id(self.id, self.__class__)
 
     class PointNumberException(Exception):
         def __init__(self, expected: int, found: int, msg: str = ""):

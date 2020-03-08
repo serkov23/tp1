@@ -5,12 +5,9 @@ from PyQt5.QtCore import QPointF
 
 from Figures.figure1D import Figure1D
 from Figures.ray import Ray
-from id_producer import IdProducer
 
 
 class Line(Figure1D):
-    cur_id = IdProducer()
-
     def __init__(self, points: List[QPointF], color: QtGui.QColor = QtGui.QColor(QtCore.Qt.black)):
         self.ray1 = Ray(points, color)
         self.ray2 = Ray([points[1], points[0]], color)

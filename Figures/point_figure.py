@@ -4,14 +4,11 @@ from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import QPointF
 
 from Figures.Figure import Figure
-from id_producer import IdProducer
 
 
 class Point(Figure):
     def __init__(self, points: List[QPointF], color: QtGui.QColor = QtGui.QColor(QtCore.Qt.black)):
         super().__init__(points, color)
-
-    cur_id = IdProducer()
 
     @staticmethod
     def points_needed() -> int:

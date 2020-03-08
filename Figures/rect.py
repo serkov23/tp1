@@ -3,7 +3,6 @@ from typing import List
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtCore import QPointF
 
-from id_producer import IdProducer
 from Figures.polygon import Polygon
 
 
@@ -13,8 +12,6 @@ class Rect(Polygon):
         super().__init__(points, color, inner_color)
         self.points = [points[0], QPointF(points[0].x(), points[1].y()), points[1],
                        QPointF(points[1].x(), points[0].y())]
-
-    cur_id = IdProducer()
 
     @staticmethod
     def points_needed() -> int:
